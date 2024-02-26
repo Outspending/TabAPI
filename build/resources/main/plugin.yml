@@ -1,0 +1,4 @@
+name: TabAPI
+version: '${version}'
+main: me.outspending.tabapi.TabAPI
+api-version: '1.20'
