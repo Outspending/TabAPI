@@ -5,7 +5,9 @@ import net.kyori.adventure.text.Component
 import org.bukkit.entity.Player
 
 abstract class AbstractTablist {
-    val slots: MutableList<Slot> = mutableListOf()
+    open var header: Component = Component.empty()
+    open var footer: Component = Component.empty()
+    open val slots: MutableList<Slot> = mutableListOf()
 
     abstract fun setHeader(header: Component)
 
