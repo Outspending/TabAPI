@@ -9,6 +9,7 @@ import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerJoinEvent
 import org.bukkit.event.player.PlayerQuitEvent
 import org.bukkit.plugin.java.JavaPlugin
+import org.bukkit.scheduler.BukkitRunnable
 import kotlin.time.measureTime
 
 lateinit var instance: JavaPlugin
@@ -32,10 +33,11 @@ class TabAPI : JavaPlugin(), Listener {
 
     @EventHandler
     fun onPlayerJoin(e: PlayerJoinEvent) {
-        val time = measureTime {
-            customTab.addViewer(e.player)
-        }
-        println("Tablist addViewer finished in $time")
+        object : BukkitRunnable() {
+            override fun run() {
+                customTab.addViewer(e.player)
+            }
+        }.runTaskLater(this, 5)
     }
 
     @EventHandler
