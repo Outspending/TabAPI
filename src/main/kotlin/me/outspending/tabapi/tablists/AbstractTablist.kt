@@ -9,10 +9,6 @@ abstract class AbstractTablist {
     open var footer: Component = Component.empty()
     open val slots: MutableList<Slot> = mutableListOf()
 
-    abstract fun setHeader(header: Component)
-
-    abstract fun setFooter(footer: Component)
-
     abstract fun sendHeaderFooter(player: Player)
 
     abstract fun addSlot(slot: Slot)

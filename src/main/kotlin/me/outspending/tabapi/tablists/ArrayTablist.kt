@@ -6,14 +6,6 @@ import net.kyori.adventure.text.Component
 import org.bukkit.entity.Player
 
 open class ArrayTablist : AbstractTablist() {
-    override fun setHeader(header: Component) {
-        this.header = header
-    }
-
-    override fun setFooter(footer: Component) {
-        this.footer = footer
-    }
-
     override fun sendHeaderFooter(player: Player) {
         val audience = Audience.audience(player)
 
