@@ -8,11 +8,11 @@ import net.minecraft.network.chat.RemoteChatSession
 import net.minecraft.network.protocol.game.ClientboundPlayerInfoUpdatePacket
 import net.minecraft.world.level.GameType
 
-class Slot private constructor(displayName: String, tabListName: Component = EMPTY_NAME, var latency: Int = 0) {
+class Slot private constructor(displayName: String, tabListName: Component = EMPTY_NAME, private var latency: Int = 0) {
     companion object {
         private val EMPTY_NAME: Component = Component.empty()
 
-        fun create(displayName: String, tabListName: Component) = Slot(displayName, tabListName)
+        fun create(displayName: String, tabListName: Component, latency: Int = 0) = Slot(displayName, tabListName, latency)
 
         fun create(displayName: String) = Slot(displayName)
     }

@@ -3,7 +3,6 @@ package me.outspending.tabapi
 import com.destroystokyo.paper.event.player.PlayerJumpEvent
 import me.outspending.tabapi.tablists.ViewableTablist
 import net.kyori.adventure.text.Component
-import org.bukkit.Bukkit
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerJoinEvent
@@ -24,7 +23,7 @@ class TabAPI : JavaPlugin(), Listener {
         customTab = ViewableTablist()
 
         val time = measureTime {
-            customTab.addSlot(Slot.create("0", Component.text("Jump Amount: 0")))
+            customTab.addSlot(Slot.create("0", Component.text("Jump Amount: 0"), 500))
         }
         println("Tablist addSlot finished in $time")
 
@@ -34,18 +33,16 @@ class TabAPI : JavaPlugin(), Listener {
     @EventHandler
     fun onPlayerJoin(e: PlayerJoinEvent) {
         object : BukkitRunnable() {
-            override fun run() {
-                customTab.addViewer(e.player)
+                override fun run() {
+                    customTab.addViewer(e.player)
+                }
             }
-        }.runTaskLater(this, 5)
+            .runTaskLater(this, 5)
     }
 
     @EventHandler
     fun onPlayerLeave(e: PlayerQuitEvent) {
-        val time = measureTime {
-            customTab.removeViewer(e.player)
-        }
-        println("Tablist removeViewer finished in $time")
+        customTab.removeViewer(e.player)
     }
 
     @EventHandler

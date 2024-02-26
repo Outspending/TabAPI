@@ -51,7 +51,7 @@ class ViewableTablist : ArrayTablist(), Viewable, Updateable {
         viewers.forEach { removeViewer(it) }
     }
 
-    override fun updateTablist() = updateSlots(slots)
+    override fun updateTablist() = updateSlots(slots, viewers)
 
     private fun updateTablist(players: Collection<Player>) = updateSlots(slots, players)
 
@@ -62,6 +62,8 @@ class ViewableTablist : ArrayTablist(), Viewable, Updateable {
         for (player in players) {
             val connection = player.getConnection()
             connection.send(ClientboundPlayerInfoUpdatePacket(enumSet, entries))
+
+            sendHeaderFooter(player)
         }
     }
 
